@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Player.cs
+// 이 스크립트는 플레이어의 점프 기능을 담당함
 public class Player : MonoBehaviour
 {
     [Header("Settings")]
@@ -39,5 +41,20 @@ public class Player : MonoBehaviour
             }
             isGrounded = true;
         }
+    }
+
+    // Trigger와 충돌했을 때 호출되는 메서드
+    void OnTriggerEnter2D(Collider2D collider) {
+
+        if (collider.gameObject.tag == "enemy") {
+
+        }
+        else if (collider.gameObject.tag == "food") {
+
+        }
+        else if (collider.gameObject.tag == "golden") {
+
+        }
+        
     }
 }
