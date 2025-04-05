@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// BackgroundScroll.cs
+// 이 스크립트는 배경을 스크롤하는 기능을 담당함
 public class BackgroundScroll : MonoBehaviour
 {
     [Header("Settings")]
