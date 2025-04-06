@@ -1136,6 +1136,9 @@ MonoBehaviour:
   JumpForce: 12
   PlayerRigidBody: {fileID: 1831498597}
   PlayerAnimator: {fileID: 1831498594}
+  PlayerCollider: {fileID: 1831498598}
+  lives: 3
+  isInvincible: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
