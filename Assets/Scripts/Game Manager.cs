@@ -65,6 +65,14 @@ public class GameManager : MonoBehaviour
         return PlayerPrefs.GetInt("highScore");
     }
 
+    public float CalculateGameSpeed() {
+        if (State != GameState.Playing) {
+            return 5f;
+        }
+        float speed = 5f + (0.5f * Mathf.Floor(CalculateScore() / 10f));
+        return Mathf.Min(speed, 30f);
+    }
+
     // Update is called once per frame
     void Update()
     {
