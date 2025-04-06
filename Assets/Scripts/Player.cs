@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     public BoxCollider2D PlayerCollider;
 
     private bool isGrounded = true; // 땅에 있는지 체크하는 변수
-    public int lives = 3; // 플레이어의 생명 수
     public bool isInvincible = false; // 플레이어가 무적 상태인지 체크하는 변수
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,24 +35,25 @@ public class Player : MonoBehaviour
         }
     }
     
-    void KillPlayer() {
+    public void KillPlayer() 
+    {
         PlayerCollider.enabled = false; // 플레이어의 Collider 비활성화
         PlayerAnimator.enabled = false; // 플레이어의 Animator 비활성화
         PlayerRigidBody.AddForceY(JumpForce, ForceMode2D.Impulse);
     }
 
-    void Hit() {
-        lives -= 1;
-        if (lives == 0) {
-            KillPlayer();
-        }
+    void Hit() 
+    {
+        GameManager.Instance.Lives -= 1;
     }
 
-    void Heal() {
-        lives = Mathf.Min(3, lives + 1);
+    void Heal() 
+    {
+        GameManager.Instance.Lives = Mathf.Min(3, GameManager.Instance.Lives + 1);
     }
 
-    void StartInvincible() {
+    void StartInvincible() 
+    {
         isInvincible = true;
         Invoke("StopInvincible", 5f); // 5초 후에 무적 상태 해제
     }
@@ -63,7 +63,8 @@ public class Player : MonoBehaviour
     }
 
     // 두 개의 Collider가 충돌하면 자동으로 호출되는 메서드 (게임 시작하자마자 실행)
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
         
         if (collision.gameObject.name == "Platform") {
             if (!isGrounded) {
@@ -74,7 +75,8 @@ public class Player : MonoBehaviour
     }
 
     // Trigger와 충돌했을 때 호출되는 메서드
-    void OnTriggerEnter2D(Collider2D collider) {
+    void OnTriggerEnter2D(Collider2D collider) 
+    {
 
         if (collider.gameObject.tag == "enemy") {
 
