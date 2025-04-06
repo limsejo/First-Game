@@ -11,13 +11,19 @@ public class Spawner : MonoBehaviour
     [Header("References")]
     public GameObject[] gameObjects;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // 오브젝트가 활성화될 때마다 호출되는 메서드
+    void OnEnable()
     {
         Invoke("Spawn", Random.Range(minSpawnDelay, maxSpawnDelay));
     }
 
-    void Spawn(){
+    void OnDisable()
+    {
+        CancelInvoke();
+    }
+
+    void Spawn()
+    {
         // 객체의 리스트에서 무작위로 객체를 하나 뽑아오고, 그 객체를 인스턴스화한 것임
         GameObject randomObject = gameObjects[Random.Range(0, gameObjects.Length)];
         Instantiate(randomObject, transform.position, Quaternion.identity);
